@@ -25,7 +25,7 @@ for t=NHistYear+1:NYear
     end
 end
 
-subplot(2,2,1), plot(Year(1:NHistYear),CO2conc(1:NHistYear)), xlabel('year'), ylabel('parts per million'), title('Ambient CO2')
+subplot(2,2,1), plot(Year(1:NHistYear),CO2conc(1:NHistYear),histCO2conc(:,1),histCO2conc(:,2),'b.'), xlabel('year'), ylabel('parts per million'), title('Ambient CO2')
 subplot(2,2,2), plot(Year(1:NHistYear),pH(1:NHistYear)), xlabel('year'), ylabel('pH'), title('Ocean acidity')
 subplot(2,2,3), plot(Year,CO2conc(:,1),Year,CO2conc(:,2),Year,CO2conc(:,3)), xlabel('year'), ylabel('parts per million'), title('Ambient CO2')
 subplot(2,2,4), plot(Year,pH(:,1),Year,pH(:,2),Year,pH(:,3)), xlabel('year'), ylabel('pH'), title('Ocean acidity')

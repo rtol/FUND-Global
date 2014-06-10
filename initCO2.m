@@ -2,6 +2,7 @@
 
 historicCO2emit = csvread('histCO2emit.csv');
 historicLUemit = csvread('histLUemit.csv');
+histCO2conc = csvread('histCO2conc.csv');
 
 for s=1:NScen
     CO2scen(s) = (100-NScen+floor(NScen/2)+s)/100;
