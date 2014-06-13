@@ -5,8 +5,11 @@ Matlab code for FUND
 
 FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
-To run only CO2 type CO2alone
-To run all greenhouse gaes type GHGalone
+To run only CO2, type CO2alone
+To run all greenhouse gases, type GHGalone
+To run gases and climate, type Climatealone
+
+June 13: Added CFC11, CFC12, sulphur aerosols, air temperature, ocean temperature
 
 June 10: Added methane, nitrous oxide and sulphur hexafluoride
 
