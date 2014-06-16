@@ -8,6 +8,9 @@ FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 To run only CO2, type CO2alone
 To run all greenhouse gases, type GHGalone
 To run gases and climate, type Climatealone
+To run climate and impacts, type Impactalone
+
+June 16: Added aggregate impact models
 
 June 13: Added CFC11, CFC12, sulphur aerosols, air temperature, ocean temperature
 
