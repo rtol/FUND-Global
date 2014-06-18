@@ -25,11 +25,7 @@ for t=2:NHistYear
      CFC12conc(t,1) = (1-CFC12life)*CFC12conc(t-1,1) + histCFC12emit(t-1);
      RadForc(t,1) = RadiativeForcing(CO2conc(t,1),CH4conc(t,1),N2Oconc(t,1),SF6conc(t,1),CFC11conc(t,1),CFC12conc(t,1),Semit(t,s));
      [atmtemp(t,1) oceantemp(t,1)] = ST(atmtemp(t-1,1),oceantemp(t-1,1),RadForc(t,1));
-     impact(1,t,1) = evaltol(atmtemp(t,1),[imppar(1,1) imppar(1,2)]);
-     impact(2,t,1) = evalweitzman(atmtemp(t,1),[imppar(2,1) imppar(2,2)]);
-     impact(3,t,1) = evalnordhaus(atmtemp(t,1),imppar(3,1));
-     impact(4,t,1) = evalhope(atmtemp(t,1),imppar(4,1));
-     impact(5,t,1) = evalploeg(atmtemp(t,1),imppar(5,1));
+     impact(:,t,1) = aggimpact(atmtemp(t,1),imppar);
 end
 
 for s=2:NScen
@@ -59,11 +55,7 @@ for t=NHistYear+1:NYear
         CFC12conc(t,s) = (1-CFC12life)*CFC12conc(t-1,s) + CFC12emit(t-1,s);
         RadForc(t,s) = RadiativeForcing(CO2conc(t,s),CH4conc(t,s),N2Oconc(t,s),SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s),Semit(t,s));
         [atmtemp(t,s) oceantemp(t,s)] = ST(atmtemp(t-1,s),oceantemp(t-1,s),RadForc(t,s));
-        impact(1,t,s) = evaltol(atmtemp(t,s),[imppar(1,1) imppar(1,2)]);
-        impact(2,t,s) = evalweitzman(atmtemp(t,s),[imppar(2,1) imppar(2,2)]);
-        impact(3,t,s) = evalnordhaus(atmtemp(t,s),imppar(3,1));
-        impact(4,t,s) = evalhope(atmtemp(t,s),imppar(4,1));
-        impact(5,t,s) = evalploeg(atmtemp(t,s),imppar(5,1));
+        impact(:,t,s) = aggimpact(atmtemp(t,s),imppar);
     end
 end
 
