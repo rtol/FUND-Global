@@ -10,6 +10,7 @@ histCFC11emit = csvread('histCFC11emit.csv');
 histCFC11conc = csvread('histCFC11conc.csv');
 histCFC12emit = csvread('histCFC12emit.csv');
 histCFC12conc = csvread('histCFC12conc.csv');
+histO3radforc = csvread('histO3radforc.csv');
 
 for s=1:NScen
     CH4scen(s) = (100-NScen+floor(NScen/2)+s)/100;
@@ -17,6 +18,7 @@ for s=1:NScen
     SF6scen(s) = (100-NScen+floor(NScen/2)+s)/100;
     CFC11scen(s) = (101-s)/100;
     CFC12scen(s) = (101-s)/100;
+    trO3scen(s) = (100-NScen+floor(NScen/2)+s)/100;
 end
 
 CH4emit= zeros(NYear,NScen);
@@ -24,12 +26,14 @@ N2Oemit= zeros(NYear,NScen);
 SF6emit= zeros(NYear,NScen);
 CFC11emit= zeros(NYear,NScen);
 CFC12emit= zeros(NYear,NScen);
+trO3radforc= zeros(NYear,NScen);
 for s=1:NScen
     CH4emit(1:NHistYear,s)=historicCH4emit;
     N2Oemit(1:NHistYear,s)=historicN2Oemit;
     SF6emit(1:NHistYear,s)=historicSF6emit;
     CFC11emit(1:NHistYear,s)=histCFC11emit;
     CFC12emit(1:NHistYear,s)=histCFC12emit;
+    trO3radforc(1:NHistYear,s)=histO3radforc;
 end
 
 for t=NHistYear+1:NYear
@@ -39,10 +43,8 @@ for t=NHistYear+1:NYear
         SF6emit(t,s) = SF6scen(s)*SF6emit(t-1,s);
         CFC11emit(t,s) = CFC11scen(s)*CFC11emit(t-1,s);
         CFC12emit(t,s) = CFC12scen(s)*CFC12emit(t-1,s);
+        trO3radforc(t,s) = trO3scen(s)*trO3radforc(t-1,s);
     end
 end
 
 otherGHGparam
-
-
-

@@ -1,5 +1,0 @@
-function aggimpact = evaltol(temp)
-
-global NImpact imppar
-
-aggimpact(1) = par(1)*temp + par(2)*temp.^2;

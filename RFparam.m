@@ -18,4 +18,4 @@ SdirRF = 0.03*4/14.6;
 SindRF = 0.08;
 
 RadForc = zeros(NYear,NScen);
-RadForc(1,1) = RadiativeForcing(CO2conc(1,1),CH4conc(1,1),N2Oconc(1,1),SF6conc(1,1),CFC11conc(1,1),CFC12conc(1,1),historicSemit(1));
+RadForc(1,1) = RadiativeForcing(CO2conc(1,1),CH4conc(1,1),N2Oconc(1,1),SF6conc(1,1),CFC11conc(1,1),CFC12conc(1,1),historicSemit(1),histO3radforc(1));
