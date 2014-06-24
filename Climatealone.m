@@ -11,6 +11,7 @@ CalibCH4
 CalibN2O
 CalibSF6
 CalibTemp
+CalibSLR
 
 for t=2:NHistYear
      MRHbox(t,1,:) = MRH(MRHbox(t-1,1,:),historicCO2emit(t-1)+historicLUemit(t-1),MRHlife,MRHshare,CO2convert);
@@ -23,6 +24,7 @@ for t=2:NHistYear
      CFC12conc(t,1) = (1-CFC12life)*CFC12conc(t-1,1) + histCFC12emit(t-1);
      RadForc(t,1) = RadiativeForcing(CO2conc(t,1),CH4conc(t,1),N2Oconc(t,1),SF6conc(t,1),CFC11conc(t,1),CFC12conc(t,1),Semit(t,1),trO3radforc(t,1));
      [atmtemp(t,1) oceantemp(t,1)] = ST(atmtemp(t-1,1),oceantemp(t-1,1),RadForc(t,1));
+     SLR(t,1) = SLRsens*oceantemp(t-1,1);
 end
 
 for s=2:NScen
@@ -37,6 +39,7 @@ for s=2:NScen
     RadForc(:,s) = RadForc(:,1);
     atmtemp(:,s) = atmtemp(:,1);
     oceantemp(:,s) = oceantemp(:,1);
+    SLR(:,s) = SLR(:,1);
 end
 
 for t=NHistYear+1:NYear
@@ -51,6 +54,7 @@ for t=NHistYear+1:NYear
         CFC12conc(t,s) = (1-CFC12life)*CFC12conc(t-1,s) + CFC12emit(t-1,s);
         RadForc(t,s) = RadiativeForcing(CO2conc(t,s),CH4conc(t,s),N2Oconc(t,s),SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s),Semit(t,s),trO3radforc(t,s));
         [atmtemp(t,s) oceantemp(t,s)] = ST(atmtemp(t-1,s),oceantemp(t-1,s),RadForc(t,s));
+        SLR(t,s) = SLRsens*oceantemp(t-1,s);
     end
 end
 
