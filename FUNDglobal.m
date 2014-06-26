@@ -28,6 +28,8 @@ for t=2:NHistYear
      RadForc(t,1) = RadiativeForcing(CO2conc(t,1),CH4conc(t,1),N2Oconc(t,1),SF6conc(t,1),CFC11conc(t,1),CFC12conc(t,1),Semit(t,1),trO3radforc(t,1));
      [atmtemp(t,1) oceantemp(t,1)] = ST(atmtemp(t-1,1),oceantemp(t-1,1),RadForc(t,1));
      SLR(t,1) = SLRsens*oceantemp(t-1,1);
+     K(t,1) = (1-Depreciation)*K(t-1,1) + SavingsRate*Y(t-1,1);
+     Y(t,1) = TFP(t,1)*histPopulation(t)^LabourElast*K(t,1)^(1-LabourElast);
      impact(:,t,1) = aggimpact(atmtemp(t,1),imppar);
 end
 
@@ -44,6 +46,8 @@ for s=2:NScen
     atmtemp(:,s) = atmtemp(:,1);
     oceantemp(:,s) = oceantemp(:,1);
     SLR(:,s) = SLR(:,1);
+    K(:,s) = K(:,1);
+    Y(:,s) = Y(:,1);
     impact(:,:,s) = impact(:,:,1);
 end
 
@@ -59,15 +63,23 @@ for t=NHistYear+1:NYear
         CFC12conc(t,s) = (1-CFC12life)*CFC12conc(t-1,s) + CFC12emit(t-1,s);
         RadForc(t,s) = RadiativeForcing(CO2conc(t,s),CH4conc(t,s),N2Oconc(t,s),SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s),Semit(t,s),trO3radforc(t,s));
         [atmtemp(t,s) oceantemp(t,s)] = ST(atmtemp(t-1,s),oceantemp(t-1,s),RadForc(t,s));
-        impact(:,t,s) = aggimpact(atmtemp(t,s),imppar);
         SLR(t,s) = SLRsens*oceantemp(t-1,s);
+        K(t,s) = (1-Depreciation)*K(t-1,s) + SavingsRate*Y(t-1,s);
+        Y(t,s) = TFP(t,s)*Population(t,s)^LabourElast*K(t,s)^(1-LabourElast);
+        impact(:,t,s) = aggimpact(atmtemp(t,s),imppar);
     end
 end
 
-subplot(2,3,1), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
-subplot(2,3,2), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol')
-subplot(2,3,3), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
-subplot(2,3,4), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
-subplot(2,3,5), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
-subplot(2,3,6), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
+YpC(:,:) = Y(:,:)./Population(:,:);
+
+subplot(2,5,1), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
+subplot(2,5,2), plot(Year,SLR(:,1),Year,SLR(:,2),Year,SLR(:,3)), xlabel('year'), ylabel('meter'), title('Sea level')
+subplot(2,5,3), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3)), xlabel('year'), ylabel('number of people'), title('Population')
+subplot(2,5,4), plot(Year,Y(:,1),Year,Y(:,2),Year,Y(:,3)), xlabel('year'), ylabel('dollar per year'), title('Gross domestic product')
+subplot(2,5,5), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')
+subplot(2,5,6), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol')
+subplot(2,5,7), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
+subplot(2,5,8), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
+subplot(2,5,9), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
+subplot(2,5,10), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
 
