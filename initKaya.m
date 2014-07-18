@@ -3,6 +3,9 @@
 histPopulation = csvread('histPopulation.csv');
 histGDP = csvread('histGDP.csv');
 histYpC = histGDP./histPopulation;
+histEnergy = csvread('histEnergy.csv');
+histEnInt = histEnergy./histGDP;
+histCO2Int = historicCO2emit./histEnergy;
 
 Y= zeros(NYear,NScen);
 
@@ -22,7 +25,9 @@ CalibTFP
 
 for s=1:NScen
      Popscen(s) = (99+s)/100;
-     TFPscen(s)= gTFP*(1-NScen+floor(NScen/2)+s)/1;
+     TFPscen(s) = gTFP*(1-NScen+floor(NScen/2)+s)/1;
+     EIscen(s) = (100-NScen+s)/100;
+     CO2scen(s) = (100-NScen+s)/100;
 end
 
 for s=2:NScen
@@ -30,13 +35,23 @@ for s=2:NScen
 end
 
 Population= zeros(NYear,NScen);
+EnInt = zeros(NYear,NScen);
+Energy = zeros(NYear,NScen);
+CO2Int = zeros(NYear,NScen);
 for s=1:NScen
     Population(1:NHistYear,s)=histPopulation;
+    EnInt(1:NHistYear,s)=histEnInt;
+    CO2Int(1:NHistYear,s)=histCO2Int;
 end
+
+Energy(1,1) = EnInt(1,1)*Y(1,1);
+CO2emit(1,1) = CO2Int(1,1)*Energy(1,1);
 
 for t=NHistYear+1:NYear
     for s=1:NScen
         Population(t,s) = Popscen(s)*Population(t-1,s);
         TFP(t,s) = (1+TFPscen(s))*TFP(t-1,s);
+        EnInt(t,s)= EIscen(s)*EnInt(t-1,s);
+        CO2Int(t,s)= CO2scen(s)*CO2Int(t-1,s);
     end
 end
