@@ -45,6 +45,22 @@ for s=2:NScen
     impact(:,:,s) = impact(:,:,1);
 end
 
+impactd = impact;
+
+for t=NHistYear+1:NYear
+    for s=1:NScen
+        if t == 265
+            [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s)+1,LUemit(t-1,s));
+        else
+            [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s),LUemit(t-1,s));
+        end
+        [CH4conc(t,s), N2Oconc(t,s), SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s)] = stepGHG(CH4conc(t-1,s),CH4emit(t-1,s),N2Oconc(t-1,s),N2Oemit(t-1,s),SF6conc(t-1,s),SF6emit(t-1,s),CFC11conc(t-1,s),CFC11emit(t-1,s),CFC12conc(t-1,s),CFC12emit(t-1,s));
+        [RadForc(t,s),atmtemp(t,s),oceantemp(t,s),SLR(t,s)] = stepClimate(CO2conc(t,s),CH4conc(t,s),N2Oconc(t,s),SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s),Semit(t,s),trO3radforc(t,s),atmtemp(t-1,s),oceantemp(t-1,s));
+        [K(t,s),Y(t,s),Energy(t,s),CO2emit(t,s)]= stepEconomy(K(t-1,s),Y(t-1,s),TFP(t,s),Population(t,s),EnInt(t,s),CO2Int(t,s));
+        impactd(:,t,s) = aggimpact(atmtemp(t,s),imppar);
+    end
+end
+
 for t=NHistYear+1:NYear
     for s=1:NScen
         [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s),LUemit(t-1,s));
@@ -56,6 +72,38 @@ for t=NHistYear+1:NYear
 end
 
 YpC(:,:) = Y(:,:)./Population(:,:);
+
+dimpact = impactd - impact;
+
+for i=1:NImpact,
+    dimpabs(i,:,:) = squeeze(dimpact(i,:,:)).*Y;
+end
+
+gy = zeros(NYear,NScen);
+for t=2:NYear,
+    for s=1:NScen,
+        gy(t,s) = (Y(t,s)-Y(t-1,s))/Y(t-1,s);
+    end
+end
+
+df = zeros(NYear,NScen);
+for s=1:NScen,
+    df(265,s)=1;
+end
+
+for t=266:NYear,
+    for s=1:NScen,
+        df(t,s) = df(t-1,s)/(1+gy(t-1,s));
+    end
+end
+
+for i=1:NImpact,
+    for s=1:NScen,
+        SCC(i,s) = df(:,s)'*dimpabs(i,:,s)';
+    end
+end
+
+SCC = -0.01*SCC/1000000;
 
 subplot(2,6,1), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3)), xlabel('year'), ylabel('number of people'), title('Population')
 subplot(2,6,2), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')
