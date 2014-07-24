@@ -1,4 +1,4 @@
-function [atmtempnew oceantempnew] = ST(atmtempold,oceantempold,radforc)
+function [atmtempnew, oceantempnew] = ST(atmtempold,oceantempold,radforc)
 %function [atmtempnew oceantempnew] = ST(atmtempold,oceantempold,radforc)
 %
 %updates the temperature of the atmosphere and the ocean using the Schneider-Thompson model

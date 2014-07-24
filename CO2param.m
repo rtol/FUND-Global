@@ -1,6 +1,6 @@
 %CO2param
 
-global CO21750 NBox
+global CO21750 NBox MRHlife MRHshare CO2convert pHpar1 pHpar2 pH1750
 
 CO21750 = 275;
 

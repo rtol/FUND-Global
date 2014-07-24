@@ -1,6 +1,9 @@
 %otherGHGparam
 
-global CH41750 N2O1750 SF61750
+global CH41750 CH4life CH4convert
+global N2O1750 N2Olife N2Oconvert
+global SF61750 SF6life SF6convert
+global CFC11life CFC12life
 
 CH4life = 0.1120;
 CH41750 = 790;

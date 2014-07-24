@@ -1,6 +1,6 @@
 %Climparam
 
-global STpar
+global STpar SLRsens
 
 ClimSens = 4.089199604542426;
 AtmTemp2010 = 0.8;
