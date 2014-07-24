@@ -1,7 +1,7 @@
 %FUND
 
 inittime
-initCO2
+initCO2alone
 initGHG
 
 CalibCO2
