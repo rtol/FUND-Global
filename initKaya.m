@@ -23,12 +23,12 @@ end
 
 CalibTFP
 
-for s=1:NScen
-     Popscen(s) = (99+s)/100;
-     TFPscen(s) = gTFP*(1-NScen+floor(NScen/2)+s)/1;
-     EIscen(s) = (100-NScen+s)/100;
-     CO2scen(s) = (100-NScen+s)/100;
-end
+%for s=1:NScen
+ %    Popscen(s) = (99+s)/100;
+  %   TFPscen(s) = gTFP*(1-NScen+floor(NScen/2)+s)/1;
+ %    EIscen(s) = (100-NScen+s)/100;
+ %    CO2scen(s) = (100-NScen+s)/100;
+%end
 
 for s=2:NScen
     TFP(:,s) = TFP(:,1);
@@ -49,9 +49,9 @@ CO2emit(1,1) = CO2Int(1,1)*Energy(1,1);
 
 for t=NHistYear+1:NYear
     for s=1:NScen
-        Population(t,s) = Popscen(s)*Population(t-1,s);
-        TFP(t,s) = (1+TFPscen(s))*TFP(t-1,s);
-        EnInt(t,s)= EIscen(s)*EnInt(t-1,s);
-        CO2Int(t,s)= CO2scen(s)*CO2Int(t-1,s);
+        Population(t,s) = (1+SRESdPop(s,ts))*Population(t-1,s);
+        TFP(t,s) = (1+SRESdInc(s,ts))*TFP(t-1,s);
+        EnInt(t,s)= (1+SRESdEnInt(s,ts))*EnInt(t-1,s);
+        CO2Int(t,s)= (1+SRESdCO2Int(s,ts))*CO2Int(t-1,s);
     end
 end

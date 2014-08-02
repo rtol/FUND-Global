@@ -1,6 +1,7 @@
 %FUND
 
 inittime
+SRES
 initCO2
 initGHG
 initRF
@@ -73,16 +74,16 @@ end
 
 YpC(:,:) = Y(:,:)./Population(:,:);
 
-subplot(2,6,1), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3)), xlabel('year'), ylabel('number of people'), title('Population')
-subplot(2,6,2), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')
-subplot(2,6,3), plot(Year,EnInt(:,1)*10^12,Year,EnInt(:,2)*10^12,Year,EnInt(:,3)*10^12), xlabel('year'), ylabel('gram oil equivalent per dollar'), title('Energy intensity')
-subplot(2,6,4), plot(Year,CO2Int(:,1),Year,CO2Int(:,2),Year,CO2Int(:,3)), xlabel('year'), ylabel('gram carbon per gram oil equivalent'), title('Carbon intensity')
-subplot(2,6,5), plot(Year,CO2emit(:,1)/1000,Year,CO2emit(:,2)/1000,Year,CO2emit(:,3)/1000), xlabel('year'), ylabel('billion tonnes of carbon'), title('Carbon dioxide emissions')
-subplot(2,6,6), plot(Year,CO2conc(:,1),Year,CO2conc(:,2),Year,CO2conc(:,3)), xlabel('year'), ylabel('parts per million by volume'), title('Carbon dioxide concentration')
-subplot(2,6,7), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
-subplot(2,6,8), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol')
-subplot(2,6,9), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
-subplot(2,6,10), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
-subplot(2,6,11), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
-subplot(2,6,12), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
+subplot(2,6,1), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3),Year,Population(:,4)), xlabel('year'), ylabel('number of people'), title('Population')
+subplot(2,6,2), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3),Year,YpC(:,4)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')
+subplot(2,6,3), plot(Year,EnInt(:,1)*10^12,Year,EnInt(:,2)*10^12,Year,EnInt(:,3)*10^12,Year,EnInt(:,4)*10^12), xlabel('year'), ylabel('gram oil equivalent per dollar'), title('Energy intensity')
+subplot(2,6,4), plot(Year,CO2Int(:,1),Year,CO2Int(:,2),Year,CO2Int(:,3),Year,CO2Int(:,4)), xlabel('year'), ylabel('gram carbon per gram oil equivalent'), title('Carbon intensity')
+subplot(2,6,5), plot(Year,CO2emit(:,1)/1000,Year,CO2emit(:,2)/1000,Year,CO2emit(:,3)/1000,Year,CO2emit(:,4)/1000), xlabel('year'), ylabel('billion tonnes of carbon'), title('Carbon dioxide emissions')
+subplot(2,6,6), plot(Year,CO2conc(:,1),Year,CO2conc(:,2),Year,CO2conc(:,3),Year,CO2conc(:,4)), xlabel('year'), ylabel('parts per million by volume'), title('Carbon dioxide concentration')
+subplot(2,6,7), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3),Year,atmtemp(:,4)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
+subplot(2,6,8), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3),Year,impact(1,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol')
+subplot(2,6,9), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3),Year,impact(2,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
+subplot(2,6,10), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3),Year,impact(3,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
+subplot(2,6,11), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3),Year,impact(4,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
+subplot(2,6,12), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3),Year,impact(5,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
 

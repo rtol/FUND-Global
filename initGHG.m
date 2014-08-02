@@ -12,14 +12,14 @@ histCFC12emit = csvread('histCFC12emit.csv');
 histCFC12conc = csvread('histCFC12conc.csv');
 histO3radforc = csvread('histO3radforc.csv');
 
-for s=1:NScen
-    CH4scen(s) = (100-NScen+floor(NScen/2)+s)/100;
-    N2Oscen(s) = (100-NScen+floor(NScen/2)+s)/100;
-    SF6scen(s) = (100-NScen+floor(NScen/2)+s)/100;
-    CFC11scen(s) = (101-s)/100;
-    CFC12scen(s) = (101-s)/100;
-    trO3scen(s) = (100-NScen+floor(NScen/2)+s)/100;
-end
+%for s=1:NScen
+%  CH4scen(s) = (100-NScen+floor(NScen/2)+s)/100;
+%    N2Oscen(s) = (100-NScen+floor(NScen/2)+s)/100;
+ %   SF6scen(s) = (100-NScen+floor(NScen/2)+s)/100;
+   % CFC11scen(s) = (101-s)/100;
+    %CFC12scen(s) = (101-s)/100;
+    %trO3scen(s) = (100-NScen+floor(NScen/2)+s)/100;
+%end
 
 CH4emit= zeros(NYear,NScen);
 N2Oemit= zeros(NYear,NScen);
@@ -38,12 +38,13 @@ end
 
 for t=NHistYear+1:NYear
     for s=1:NScen
-        CH4emit(t,s) = CH4scen(s)*CH4emit(t-1,s);
-        N2Oemit(t,s) = N2Oscen(s)*N2Oemit(t-1,s);
-        SF6emit(t,s) = SF6scen(s)*SF6emit(t-1,s);
-        CFC11emit(t,s) = CFC11scen(s)*CFC11emit(t-1,s);
-        CFC12emit(t,s) = CFC12scen(s)*CFC12emit(t-1,s);
-        trO3radforc(t,s) = trO3scen(s)*trO3radforc(t-1,s);
+        ts = t-NHistYear;
+        CH4emit(t,s) = (1+SRESdCH4(s,ts))*CH4emit(t-1,s);
+        N2Oemit(t,s) = (1+SRESdN2O(s,ts))*N2Oemit(t-1,s);
+        SF6emit(t,s) = (1+SRESdSF6(s,ts))*SF6emit(t-1,s);
+        CFC11emit(t,s) = (1+SRESdCFC(s,ts))*CFC11emit(t-1,s);
+        CFC12emit(t,s) = (1+SRESdCFC(s,ts))*CFC12emit(t-1,s);
+        trO3radforc(t,s) = (1+SRESdO3(s,ts))*trO3radforc(t-1,s);
     end
 end
 
