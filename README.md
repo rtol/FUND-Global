@@ -15,6 +15,8 @@ To run climate and impacts, type Impactalone
 
 To run the entire model, type FUNDglobal
 
+August 2: Replaced artificial scenarios with SRES
+
 July 24: Added social cost of carbon
 
 July 18: Added energy; endogenised CO2 emissions from energy use
