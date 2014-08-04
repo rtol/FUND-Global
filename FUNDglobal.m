@@ -1,4 +1,11 @@
-%FUND
+%FUNDglobal
+%The Climate Framework for Uncertainty, Negotiation and Distribution
+%version 4.0-matlab-global
+%
+%This script runs FUND 4.0 MG
+%
+%Richard Tol, 8 August 2014
+%This code is protected by the MIT License
 
 inittime
 SRES
@@ -73,6 +80,8 @@ for t=NHistYear+1:NYear
 end
 
 YpC(:,:) = Y(:,:)./Population(:,:);
+
+SocialCostofCarbon;
 
 subplot(2,6,1), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3),Year,Population(:,4)), xlabel('year'), ylabel('number of people'), title('Population')
 subplot(2,6,2), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3),Year,YpC(:,4)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')

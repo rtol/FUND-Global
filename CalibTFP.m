@@ -1,3 +1,13 @@
+%CalibTFP
+%The Climate Framework for Uncertainty, Negotiation and Distribution,
+%version 4.0-matlab-global
+%
+%This script is part of FUND 4.0 MG
+%It calibrates the growth rate of total factor productivity
+%
+%Richard Tol, 28 August 2014
+%This code is protected by the MIT License
+
 %first pass
 for t=2:NHistYear
      K(t,1) = (1-Depreciation)*K(t-1,1) + SavingsRate*Y(t-1,1);

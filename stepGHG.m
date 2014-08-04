@@ -1,6 +1,13 @@
 function [CH4c, N2Oc, SF6c, CFC11c, CFC12c] = stepGHG(CH4c0,CH4e,N2Oc0,N2Oe,SF6c0,SF6e,CFC11c0,CFC11e,CFC12c0,CFC12e)
 %function [CH4c, N2Oc, SF6c, CFC11c, CFC12c] = stepGHG(CH4c0,CH4e,N2Oc0,N2Oe,SF6c0,SF6e,CFC11c0,CFC11e,CFC12c0,CFC12e)
-%function [CH4c, N2Oc, SF6c, CFC11c, CFC12c] = stepGHG(CH4c0,CH4e,N2Oc0,N2Oe,SF6c0,SF6e,CFC11c0,CFC11e,CFC12c0,CFC12e)
+%The Climate Framework for Uncertainty, Negotiation and Distribution
+%version 4.0-matlab-global
+%
+%This function is part of FUND 4.0 MG
+%It updates non-CO2 greenhouse gas concentrations
+%
+%Richard Tol, 8 August 2014
+%This code is protected by the MIT License
 
 global CH41750 CH4life CH4convert
 global N2O1750 N2Olife N2Oconvert

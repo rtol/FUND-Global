@@ -1,4 +1,12 @@
-%read SRES and reshape
+%SRES
+%The Climate Framework for Uncertainty, Negotiation and Distribution,
+%version 4.0-matlab-global
+%
+%This script is part of FUND 4.0 MG
+%It reads and reshapes the SRES scenarios
+%
+%Richard Tol, 8 August 2014
+%This code is protected by the MIT License
 
 SRESall = csvread('SRES.csv');
 
