@@ -17,7 +17,14 @@ end
 gy = zeros(NYear,NScen);
 for t=2:NYear,
     for s=1:NScen,
-        gy(t,s) = (Y(t,s)-Y(t-1,s))/Y(t-1,s);
+        gy(t,s) = (YpC(t,s)-YpC(t-1,s))/YpC(t-1,s);
+    end
+end
+
+gp = zeros(NYear,NScen);
+for t=2:NYear,
+    for s=1:NScen,
+        gp(t,s) = (Population(t,s)-Population(t-1,s))/Population(t-1,s);
     end
 end
 
@@ -39,7 +46,7 @@ for t=266:NYear,
     for s=1:NScen,
         for p=1:NDR,
             for r=1:NRA
-                df(t,s,p,r) = df(t-1,s,p,r)/(1+PRTP(p)+RA(r)*gy(t-1,s));
+                df(t,s,p,r) = df(t-1,s,p,r)/(1+PRTP(p)+gp(t-1,s)+RA(r)*gy(t-1,s));
             end
         end
     end

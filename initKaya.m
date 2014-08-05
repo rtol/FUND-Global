@@ -31,13 +31,6 @@ end
 
 CalibTFP
 
-%for s=1:NScen
- %    Popscen(s) = (99+s)/100;
-  %   TFPscen(s) = gTFP*(1-NScen+floor(NScen/2)+s)/1;
- %    EIscen(s) = (100-NScen+s)/100;
- %    CO2scen(s) = (100-NScen+s)/100;
-%end
-
 for s=2:NScen
     TFP(:,s) = TFP(:,1);
 end
