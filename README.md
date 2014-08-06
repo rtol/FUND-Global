@@ -7,6 +7,8 @@ FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
 To run the model, type FUNDglobal
 
+August 6: Improved flow and readability of code
+
 August 2: Replaced artificial scenarios with SRES
 
 July 24: Added social cost of carbon
