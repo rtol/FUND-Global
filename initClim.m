@@ -5,12 +5,15 @@
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
 
-historicTemp = csvread('histTemp.csv');
+atmtemp = zeros(NYear,NScen);
+oceantemp = zeros(NYear,NScen);
+SLR = zeros(NYear,NScen);
 
-Climparam
-
+atmtemp(1,1) = atmtemp0;
+oceantemp(1,1) = oceantemp0;
+SLR(1,1) = 0;
 
 

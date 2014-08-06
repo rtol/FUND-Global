@@ -5,23 +5,12 @@
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
 
-global YpC2010
-
-histPopulation = csvread('histPopulation.csv');
-histGDP = csvread('histGDP.csv');
-histYpC = histGDP./histPopulation;
-histEnergy = csvread('histEnergy.csv');
-histEnInt = histEnergy./histGDP;
-histCO2Int = historicCO2emit./histEnergy;
-
-YpC2010 = histYpC(NHistYear);
-
-Y= zeros(NYear,NScen);
-
-CobbDouglasparam
+TFP = zeros(NYear,NScen);
+K = zeros(NYear,NScen);
+Y = zeros(NYear,NScen);
 
 TFP(1,1) = (histGDP(1)/histPopulation(1))^LabourElast * (Depreciation/SavingsRate)^(1-LabourElast);
 K(1,1) = SavingsRate*histGDP(1)/Depreciation;
@@ -53,6 +42,7 @@ Energy(1,1) = EnInt(1,1)*Y(1,1);
 CO2emit(1,1) = CO2Int(1,1)*Energy(1,1);
 
 for t=NHistYear+1:NYear
+    ts = t-NHistYear;
     for s=1:NScen
         Population(t,s) = (1+SRESdPop(s,ts))*Population(t-1,s);
         TFP(t,s) = (1+SRESdInc(s,ts))*TFP(t-1,s);

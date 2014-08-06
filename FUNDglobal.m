@@ -4,25 +4,15 @@
 %
 %This script runs FUND 4.0 MG
 %
-%Richard Tol, 8 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
 
-inittime
+Initialize
 SRES
-initCO2
-initGHG
-initRF
-initClim
-initImpact
-initKaya
-
-CalibCO2
-CalibCH4
-CalibN2O
-CalibSF6
-CalibTemp
-CalibSLR
-CalibImpact
+ReadData
+SetParameters
+InitModules
+Calibration
 
 for t=2:NHistYear
      [MRHbox(t,1,:), CO2conc(t,1), pH(t,1)] = stepCO2(MRHbox(t-1,1,:),historicCO2emit(t-1),historicLUemit(t-1));

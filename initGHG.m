@@ -5,29 +5,8 @@
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
-
-historicCH4emit = csvread('histCH4emit.csv');
-histCH4conc = csvread('histCH4conc.csv');
-historicN2Oemit = csvread('histN2Oemit.csv');
-histN2Oconc = csvread('histN2Oconc.csv');
-historicSF6emit = csvread('histSF6emit.csv');
-histSF6conc = csvread('histSF6conc.csv');
-histCFC11emit = csvread('histCFC11emit.csv');
-histCFC11conc = csvread('histCFC11conc.csv');
-histCFC12emit = csvread('histCFC12emit.csv');
-histCFC12conc = csvread('histCFC12conc.csv');
-histO3radforc = csvread('histO3radforc.csv');
-
-%for s=1:NScen
-%  CH4scen(s) = (100-NScen+floor(NScen/2)+s)/100;
-%    N2Oscen(s) = (100-NScen+floor(NScen/2)+s)/100;
- %   SF6scen(s) = (100-NScen+floor(NScen/2)+s)/100;
-   % CFC11scen(s) = (101-s)/100;
-    %CFC12scen(s) = (101-s)/100;
-    %trO3scen(s) = (100-NScen+floor(NScen/2)+s)/100;
-%end
 
 CH4emit= zeros(NYear,NScen);
 N2Oemit= zeros(NYear,NScen);
@@ -35,6 +14,7 @@ SF6emit= zeros(NYear,NScen);
 CFC11emit= zeros(NYear,NScen);
 CFC12emit= zeros(NYear,NScen);
 trO3radforc= zeros(NYear,NScen);
+
 for s=1:NScen
     CH4emit(1:NHistYear,s)=historicCH4emit;
     N2Oemit(1:NHistYear,s)=historicN2Oemit;
@@ -56,4 +36,11 @@ for t=NHistYear+1:NYear
     end
 end
 
-otherGHGparam
+CH4conc = zeros(NYear,NScen);
+CH4conc(1,1) = CH41750;
+N2Oconc = zeros(NYear,NScen);
+N2Oconc(1,1) = N2O1750;
+SF6conc = zeros(NYear,NScen);
+SF6conc(1,1) = SF61750;
+CFC11conc = zeros(NYear,NScen);
+CFC12conc = zeros(NYear,NScen);

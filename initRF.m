@@ -5,14 +5,8 @@
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
-
-historicSemit = csvread('histSemit.csv');
-
-%for s=1:NScen
- %   Sscen(s) = (100-NScen+floor(NScen/2)+s)/100;
-%end
 
 Semit= zeros(NYear,NScen);
 for s=1:NScen
@@ -25,7 +19,5 @@ for t=NHistYear+1:NYear
     end
 end
 
-RFparam
-
-
-
+RadForc = zeros(NYear,NScen);
+RadForc(1,1) = RadiativeForcing(CO2conc(1,1),CH4conc(1,1),N2Oconc(1,1),SF6conc(1,1),CFC11conc(1,1),CFC12conc(1,1),historicSemit(1),histO3radforc(1));

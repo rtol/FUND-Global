@@ -5,7 +5,7 @@
 %This script is part of FUND 4.0 MG
 %It calibrates the sensitivity of temperature to radiative forcing
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
 
 %first pass
@@ -14,6 +14,7 @@ for t=2:NHistYear
      [atmtemp(t,1) oceantemp(t,1)] = ST(atmtemp(t-1,1),oceantemp(t-1,1),RadForc(t,1));
 end
 
+%calibrate
 while abs(atmtemp(NHistYear,1)-AtmTemp2010) > 0.01,
          STpar(1) = STpar(1)*AtmTemp2010/atmtemp(NHistYear,1);
          for t=2:NHistYear

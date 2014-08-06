@@ -5,12 +5,14 @@
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
 
-observedImpact = csvread('TotalImpact.csv');
+ global YpC2010
 
-Impactparam
+YpC2010 = histYpC(NHistYear);
+
+impact = zeros(NImpact,NYear,NScen);
 
 
 

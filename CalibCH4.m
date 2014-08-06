@@ -5,15 +5,15 @@
 %This script is part of FUND 4.0 MG
 %It calibrates the atmospheric lifetime of methane
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
-
 
 %first pass
 for t=2:NHistYear
      CH4conc(t,1) = (1-CH4life)*CH4conc(t-1,1) + CH4life*CH41750 + CH4convert*historicCH4emit(t-1);
 end
 
+%calibrate
 CH4aux = CH4life;
 
 while abs(CH4conc(NHistYear)-CH42010) > 1,

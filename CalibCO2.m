@@ -6,9 +6,8 @@
 %It calibrates the conversion factor of carbon dioxide emissions to
 %instantaneous concentrations.
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
-
 
 %first pass
 for t=2:NHistYear
@@ -16,6 +15,7 @@ for t=2:NHistYear
      CO2conc(t,1) = sum(MRHbox(t,1,:));
 end
 
+%calibrate
 CO2aux = CO2convert;
 
 while abs(CO2conc(NHistYear)-CO22010) > 1,

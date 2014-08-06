@@ -5,19 +5,12 @@
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 28 August 2014
+%Richard Tol, 6 August 2014
 %This code is protected by the MIT License
-
-historicCO2emit = csvread('histCO2emit.csv');
-historicLUemit = csvread('histLUemit.csv');
-histCO2conc = csvread('histCO2conc.csv');
-
-for s=1:NScen
-      LUscen(s) = (100-NScen+floor(NScen/2)+s)/100;
-end
 
 CO2emit= zeros(NYear,NScen);
 LUemit= zeros(NYear,NScen);
+
 for s=1:NScen
      LUemit(1:NHistYear,s)=historicLUemit;
 end
@@ -37,7 +30,12 @@ for s=1:NScen
     LUemit(NYear,s) = SRESLU(s,ts);
 end
 
-CO2param
+MRHbox = zeros(NYear,NScen,NBox);
+MRHbox(1,1,:) = MRH1750;
+CO2conc = zeros(NYear,NScen);
+CO21750 = sum(MRH1750);
+CO2conc(1,1) = CO21750;
 
-
+pH = zeros(NYear,NScen);
+pH(1) = pH1750;
 
