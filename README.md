@@ -1,7 +1,7 @@
 FUND
 ====
 
-Matlab code for FUND
+Matlab code for FUND 4.0 MG
 
 FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
