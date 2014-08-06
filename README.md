@@ -5,15 +5,7 @@ Matlab code for FUND
 
 FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
-To run only CO2, type CO2alone
-
-To run all greenhouse gases, type GHGalone
-
-To run gases and climate, type Climatealone
-
-To run climate and impacts, type Impactalone
-
-To run the entire model, type FUNDglobal
+To run the model, type FUNDglobal
 
 August 2: Replaced artificial scenarios with SRES
 
