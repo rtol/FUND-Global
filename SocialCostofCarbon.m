@@ -1,11 +1,11 @@
 %SocialCostofCarbon
 %The Climate Framework for Uncertainty, Negotiation and Distribution,
-%version 4.0-matlab-global
+%version 4.1-matlab-global
 %
-%This script is part of FUND 4.0 MG
+%This script is part of FUND 4.1 MG
 %It computes the social cost of carbon
 %
-%Richard Tol, 6 August 2014
+%Richard Tol, 19 March 2018
 %This code is protected by the MIT License
 
 dimpact = impactd - impact;
@@ -84,11 +84,13 @@ disp(line)
 
 t = PrintTable;
 t.addRow('Model \ Scenario', 'SRES A1', 'SRES A2', 'SRES B1', 'SRES B2');
-t.addRow('Tol',num2str(SCC(1,1,4,2),7),num2str(SCC(1,2,4,2),7),num2str(SCC(1,3,4,2),7),num2str(SCC(1,4,4,2),7));
+t.addRow('Tol parabola',num2str(SCC(1,1,4,2),7),num2str(SCC(1,2,4,2),7),num2str(SCC(1,3,4,2),7),num2str(SCC(1,4,4,2),7));
 t.addRow('Weitzman',num2str(SCC(2,1,4,2),7),num2str(SCC(2,2,4,2),7),num2str(SCC(2,3,4,2),7),num2str(SCC(2,4,4,2),7));
 t.addRow('Nordhaus',num2str(SCC(3,1,4,2),7),num2str(SCC(3,2,4,2),7),num2str(SCC(3,3,4,2),7),num2str(SCC(3,4,4,2),7));
 t.addRow('Hope',num2str(SCC(4,1,4,2),7),num2str(SCC(4,2,4,2),7),num2str(SCC(4,3,4,2),7),num2str(SCC(4,4,4,2),7));
 t.addRow('Ploeg',num2str(SCC(5,1,4,2),7),num2str(SCC(5,2,4,2),7),num2str(SCC(5,3,4,2),7),num2str(SCC(5,4,4,2),7));
+t.addRow('Golosov',num2str(SCC(6,1,4,2),7),num2str(SCC(6,2,4,2),7),num2str(SCC(6,3,4,2),7),num2str(SCC(6,4,4,2),7));
+t.addRow('Tol piecewise linear',num2str(SCC(7,1,4,2),7),num2str(SCC(7,2,4,2),7),num2str(SCC(7,3,4,2),7),num2str(SCC(7,4,4,2),7));
 disp('Social cost of carbon ($/tC)')
 disp('alternative impact models (rows) and scenarios (columns)')
 disp('pure rate of time preference = 0.03; rate of risk aversion = 1')

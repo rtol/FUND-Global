@@ -1,11 +1,11 @@
 %CalibrationTargets
 %The Climate Framework for Uncertainty, Negotiation and Distribution,
-%version 4.0-matlab-global
+%version 4.1-matlab-global
 %
-%This script is part of FUND 4.0 MG
+%This script is part of FUND 4.1 MG
 %It sets parameters and variables
 %
-%Richard Tol, 6 August 2014
+%Richard Tol, 20 March 2018
 %This code is protected by the MIT License
 
 %starting values
@@ -19,7 +19,7 @@ STpar(1) = ClimSens/CO2RF/log(2);
 SLRsens = 0.9;
 
 %targets
-CO22010 = histCO2conc(NHistYear);
+CO22010 = 388.56;
 CH42010 = 1816;
 N2O2010 = 323;
 SF62010 = 7.28;
