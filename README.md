@@ -7,6 +7,8 @@ FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
 To run the model, type FUNDglobal
 
+March 20, 2018: Fixed CO2 concentration
+
 March 19, 2018: Added Tol's piecewise linear impact function
 
 March 18, 2018: Updated Hope's impact function; updated observed impacts; added Golosov's impact function
