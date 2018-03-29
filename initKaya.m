@@ -1,11 +1,11 @@
 %initKaya
 %The Climate Framework for Uncertainty, Negotiation and Distribution,
-%version 4.0-matlab-global
+%version 4.1-matlab-global
 %
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 6 August 2014
+%Richard Tol, 25 March 2018
 %This code is protected by the MIT License
 
 TFP = zeros(NYear,NScen);
@@ -43,10 +43,16 @@ CO2emit(1,1) = CO2Int(1,1)*Energy(1,1);
 
 for t=NHistYear+1:NYear
     ts = t-NHistYear;
-    for s=1:NScen
+    for s=1:NSRES
         Population(t,s) = (1+SRESdPop(s,ts))*Population(t-1,s);
         TFP(t,s) = (1+SRESdInc(s,ts))*TFP(t-1,s);
         EnInt(t,s)= (1+SRESdEnInt(s,ts))*EnInt(t-1,s);
         CO2Int(t,s)= (1+SRESdCO2Int(s,ts))*CO2Int(t-1,s);
+    end
+    for s=NSRES+1:NScen
+        Population(t,s) = (1+SSPdPop(s-NSRES,ts))*Population(t-1,s);
+        TFP(t,s) = (1+SSPdInc(s-NSRES,ts))*TFP(t-1,s);
+        EnInt(t,s)= (1+SSPdEnInt(s-NSRES,ts))*EnInt(t-1,s);
+        CO2Int(t,s)= (1+SSPdCO2Int(s-NSRES,ts))*CO2Int(t-1,s);
     end
 end

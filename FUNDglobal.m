@@ -4,7 +4,7 @@
 %
 %This script runs FUND 4.1 MG
 %
-%Richard Tol, 19 March 2018
+%Richard Tol, 28 March 2018
 %This code is protected by the MIT License
 
 Initialize
@@ -73,18 +73,17 @@ YpC(:,:) = Y(:,:)./Population(:,:);
 
 SocialCostofCarbon;
 
-subplot(2,7,1), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3),Year,Population(:,4)), xlabel('year'), ylabel('number of people'), title('Population')
-subplot(2,7,2), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3),Year,YpC(:,4)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')
-subplot(2,7,3), plot(Year,EnInt(:,1)*10^12,Year,EnInt(:,2)*10^12,Year,EnInt(:,3)*10^12,Year,EnInt(:,4)*10^12), xlabel('year'), ylabel('gram oil equivalent per dollar'), title('Energy intensity')
-subplot(2,7,4), plot(Year,CO2Int(:,1),Year,CO2Int(:,2),Year,CO2Int(:,3),Year,CO2Int(:,4)), xlabel('year'), ylabel('gram carbon per gram oil equivalent'), title('Carbon intensity')
-subplot(2,7,5), plot(Year,CO2emit(:,1)/1000,Year,CO2emit(:,2)/1000,Year,CO2emit(:,3)/1000,Year,CO2emit(:,4)/1000), xlabel('year'), ylabel('billion tonnes of carbon'), title('Carbon dioxide emissions')
-subplot(2,7,6), plot(Year,CO2conc(:,1),Year,CO2conc(:,2),Year,CO2conc(:,3),Year,CO2conc(:,4)), xlabel('year'), ylabel('parts per million by volume'), title('Carbon dioxide concentration')
-subplot(2,7,7), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3),Year,atmtemp(:,4)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
-subplot(2,7,8), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3),Year,impact(1,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (parabola)')
-subplot(2,7,9), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3),Year,impact(2,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
-subplot(2,7,10), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3),Year,impact(3,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
-subplot(2,7,11), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3),Year,impact(4,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
-subplot(2,7,12), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3),Year,impact(5,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
-subplot(2,7,13), plot(Year,impact(6,:,1),Year,impact(6,:,2),Year,impact(6,:,3),Year,impact(6,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Golosov')
-subplot(2,7,14), plot(Year,impact(7,:,1),Year,impact(7,:,2),Year,impact(7,:,3),Year,impact(7,:,4)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (bilinear)')
-
+subplot(2,7,1), plot(Year,Population(:,1),Year,Population(:,2),Year,Population(:,3),Year,Population(:,4),Year,Population(:,5),Year,Population(:,6),Year,Population(:,7),Year,Population(:,8),Year,Population(:,9)), xlabel('year'), ylabel('number of people'), title('Population')
+subplot(2,7,2), plot(Year,YpC(:,1),Year,YpC(:,2),Year,YpC(:,3),Year,YpC(:,4),Year,YpC(:,5),Year,YpC(:,6),Year,YpC(:,7),Year,YpC(:,8),Year,YpC(:,9)), xlabel('year'), ylabel('dollar per person per year'), title('Average income')
+subplot(2,7,3), plot(Year,EnInt(:,1)*10^12,Year,EnInt(:,2)*10^12,Year,EnInt(:,3)*10^12,Year,EnInt(:,4)*10^12,Year,EnInt(:,5)*10^12,Year,EnInt(:,6)*10^12,Year,EnInt(:,7)*10^12,Year,EnInt(:,8)*10^12,Year,EnInt(:,9)*10^12), xlabel('year'), ylabel('gram oil equivalent per dollar'), title('Energy intensity')
+subplot(2,7,4), plot(Year,CO2Int(:,1),Year,CO2Int(:,2),Year,CO2Int(:,3),Year,CO2Int(:,4),Year,CO2Int(:,5),Year,CO2Int(:,6),Year,CO2Int(:,7),Year,CO2Int(:,8),Year,CO2Int(:,9)), xlabel('year'), ylabel('gram carbon per gram oil equivalent'), title('Carbon intensity')
+subplot(2,7,5), plot(Year,CO2emit(:,1)/1000,Year,CO2emit(:,2)/1000,Year,CO2emit(:,3)/1000,Year,CO2emit(:,4)/1000,Year,CO2emit(:,5)/1000,Year,CO2emit(:,6)/1000,Year,CO2emit(:,7)/1000,Year,CO2emit(:,8)/1000,Year,CO2emit(:,9)/1000), xlabel('year'), ylabel('billion tonnes of carbon'), title('Carbon dioxide emissions')
+subplot(2,7,6), plot(Year,CO2conc(:,1),Year,CO2conc(:,2),Year,CO2conc(:,3),Year,CO2conc(:,4),Year,CO2conc(:,5),Year,CO2conc(:,6),Year,CO2conc(:,7),Year,CO2conc(:,8),Year,CO2conc(:,9)), xlabel('year'), ylabel('parts per million by volume'), title('Carbon dioxide concentration')
+subplot(2,7,7), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3),Year,atmtemp(:,4),Year,atmtemp(:,6),Year,atmtemp(:,6),Year,atmtemp(:,7),Year,atmtemp(:,8),Year,atmtemp(:,9)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
+subplot(2,7,8), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3),Year,impact(1,:,4),Year,impact(1,:,5),Year,impact(1,:,6),Year,impact(1,:,7),Year,impact(1,:,8),Year,impact(1,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (parabola)')
+subplot(2,7,9), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3),Year,impact(2,:,4),Year,impact(2,:,5),Year,impact(2,:,6),Year,impact(2,:,7),Year,impact(2,:,8),Year,impact(2,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
+subplot(2,7,10), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3),Year,impact(3,:,4),Year,impact(3,:,5),Year,impact(3,:,6),Year,impact(3,:,7),Year,impact(3,:,8),Year,impact(3,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
+subplot(2,7,11), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3),Year,impact(4,:,4),Year,impact(4,:,5),Year,impact(4,:,6),Year,impact(4,:,7),Year,impact(4,:,8),Year,impact(4,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
+subplot(2,7,12), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3),Year,impact(5,:,4),Year,impact(5,:,5),Year,impact(5,:,6),Year,impact(5,:,7),Year,impact(5,:,8),Year,impact(5,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
+subplot(2,7,13), plot(Year,impact(6,:,1),Year,impact(6,:,2),Year,impact(6,:,3),Year,impact(6,:,4),Year,impact(6,:,5),Year,impact(6,:,6),Year,impact(6,:,7),Year,impact(6,:,8),Year,impact(6,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Golosov')
+subplot(2,7,14), plot(Year,impact(7,:,1),Year,impact(7,:,2),Year,impact(7,:,3),Year,impact(7,:,4),Year,impact(7,:,5),Year,impact(7,:,6),Year,impact(7,:,7),Year,impact(7,:,8),Year,impact(7,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (bilinear)')

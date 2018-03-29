@@ -1,11 +1,11 @@
 %initGHG
 %The Climate Framework for Uncertainty, Negotiation and Distribution,
-%version 4.0-matlab-global
+%version 4.1-matlab-global
 %
 %This script is part of FUND 4.0 MG
 %It initializes variables and sets parameters
 %
-%Richard Tol, 6 August 2014
+%Richard Tol, 25 March 2018
 %This code is protected by the MIT License
 
 CH4emit= zeros(NYear,NScen);
@@ -25,7 +25,7 @@ for s=1:NScen
 end
 
 for t=NHistYear+1:NYear
-    for s=1:NScen
+    for s=1:NSRES
         ts = t-NHistYear;
         CH4emit(t,s) = (1+SRESdCH4(s,ts))*CH4emit(t-1,s);
         N2Oemit(t,s) = (1+SRESdN2O(s,ts))*N2Oemit(t-1,s);
@@ -33,6 +33,15 @@ for t=NHistYear+1:NYear
         CFC11emit(t,s) = (1+SRESdCFC(s,ts))*CFC11emit(t-1,s);
         CFC12emit(t,s) = (1+SRESdCFC(s,ts))*CFC12emit(t-1,s);
         trO3radforc(t,s) = (1+SRESdO3(s,ts))*trO3radforc(t-1,s);
+    end
+    for s=NSRES+1:NScen
+        ts = t-NHistYear;
+        CH4emit(t,s) = (1+SSPdCH4(s-NSRES,ts))*CH4emit(t-1,s);
+        N2Oemit(t,s) = (1+SSPdN2O(s-NSRES,ts))*N2Oemit(t-1,s);
+        SF6emit(t,s) = (1+SSPdSF6(s-NSRES,ts))*SF6emit(t-1,s);
+        CFC11emit(t,s) = (1+SSPdCFC(s-NSRES,ts))*CFC11emit(t-1,s);
+        CFC12emit(t,s) = (1+SSPdCFC(s-NSRES,ts))*CFC12emit(t-1,s);
+        trO3radforc(t,s) = (1+SSPdO3(s-NSRES,ts))*trO3radforc(t-1,s);
     end
 end
 

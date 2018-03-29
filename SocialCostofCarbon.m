@@ -5,7 +5,7 @@
 %This script is part of FUND 4.1 MG
 %It computes the social cost of carbon
 %
-%Richard Tol, 19 March 2018
+%Richard Tol, 28 March 2018
 %This code is protected by the MIT License
 
 dimpact = impactd - impact;
@@ -83,14 +83,14 @@ line = sprintf('\n');
 disp(line)
 
 t = PrintTable;
-t.addRow('Model \ Scenario', 'SRES A1', 'SRES A2', 'SRES B1', 'SRES B2');
-t.addRow('Tol parabola',num2str(SCC(1,1,4,2),7),num2str(SCC(1,2,4,2),7),num2str(SCC(1,3,4,2),7),num2str(SCC(1,4,4,2),7));
-t.addRow('Weitzman',num2str(SCC(2,1,4,2),7),num2str(SCC(2,2,4,2),7),num2str(SCC(2,3,4,2),7),num2str(SCC(2,4,4,2),7));
-t.addRow('Nordhaus',num2str(SCC(3,1,4,2),7),num2str(SCC(3,2,4,2),7),num2str(SCC(3,3,4,2),7),num2str(SCC(3,4,4,2),7));
-t.addRow('Hope',num2str(SCC(4,1,4,2),7),num2str(SCC(4,2,4,2),7),num2str(SCC(4,3,4,2),7),num2str(SCC(4,4,4,2),7));
-t.addRow('Ploeg',num2str(SCC(5,1,4,2),7),num2str(SCC(5,2,4,2),7),num2str(SCC(5,3,4,2),7),num2str(SCC(5,4,4,2),7));
-t.addRow('Golosov',num2str(SCC(6,1,4,2),7),num2str(SCC(6,2,4,2),7),num2str(SCC(6,3,4,2),7),num2str(SCC(6,4,4,2),7));
-t.addRow('Tol piecewise linear',num2str(SCC(7,1,4,2),7),num2str(SCC(7,2,4,2),7),num2str(SCC(7,3,4,2),7),num2str(SCC(7,4,4,2),7));
+t.addRow('Model \ Scenario', 'SRES A1', 'SRES A2', 'SRES B1', 'SRES B2', 'SSP1', 'SSP2', 'SSP3', 'SSP4', 'SSP5');
+t.addRow('Tol parabola',num2str(SCC(1,1,4,2),7),num2str(SCC(1,2,4,2),7),num2str(SCC(1,3,4,2),7),num2str(SCC(1,4,4,2),7),num2str(SCC(1,5,4,2),7),num2str(SCC(1,6,4,2),7),num2str(SCC(1,7,4,2),7),num2str(SCC(1,8,4,2),7),num2str(SCC(1,9,4,2),7));
+t.addRow('Weitzman',num2str(SCC(2,1,4,2),7),num2str(SCC(2,2,4,2),7),num2str(SCC(2,3,4,2),7),num2str(SCC(2,4,4,2),7),num2str(SCC(2,5,4,2),7),num2str(SCC(2,6,4,2),7),num2str(SCC(2,7,4,2),7),num2str(SCC(2,8,4,2),7),num2str(SCC(2,9,4,2),7));
+t.addRow('Nordhaus',num2str(SCC(3,1,4,2),7),num2str(SCC(3,2,4,2),7),num2str(SCC(3,3,4,2),7),num2str(SCC(3,4,4,2),7),num2str(SCC(3,5,4,2),7),num2str(SCC(3,6,4,2),7),num2str(SCC(3,7,4,2),7),num2str(SCC(3,8,4,2),7),num2str(SCC(3,9,4,2),7));
+t.addRow('Hope',num2str(SCC(4,1,4,2),7),num2str(SCC(4,2,4,2),7),num2str(SCC(4,3,4,2),7),num2str(SCC(4,4,4,2),7),num2str(SCC(4,5,4,2),7),num2str(SCC(4,6,4,2),7),num2str(SCC(4,7,4,2),7),num2str(SCC(4,8,4,2),7),num2str(SCC(4,9,4,2),7));
+t.addRow('Ploeg',num2str(SCC(5,1,4,2),7),num2str(SCC(5,2,4,2),7),num2str(SCC(5,3,4,2),7),num2str(SCC(5,4,4,2),7),num2str(SCC(5,5,4,2),7),num2str(SCC(5,6,4,2),7),num2str(SCC(5,7,4,2),7),num2str(SCC(5,8,4,2),7),num2str(SCC(5,9,4,2),7));
+t.addRow('Golosov',num2str(SCC(6,1,4,2),7),num2str(SCC(6,2,4,2),7),num2str(SCC(6,3,4,2),7),num2str(SCC(6,4,4,2),7),num2str(SCC(6,5,4,2),7),num2str(SCC(6,6,4,2),7),num2str(SCC(6,7,4,2),7),num2str(SCC(6,8,4,2),7),num2str(SCC(6,9,4,2),7));
+t.addRow('Tol piecewise linear',num2str(SCC(7,1,4,2),7),num2str(SCC(7,2,4,2),7),num2str(SCC(7,3,4,2),7),num2str(SCC(7,4,4,2),7),num2str(SCC(7,5,4,2),7),num2str(SCC(7,6,4,2),7),num2str(SCC(7,7,4,2),7),num2str(SCC(7,8,4,2),7),num2str(SCC(7,9,4,2),7));
 disp('Social cost of carbon ($/tC)')
 disp('alternative impact models (rows) and scenarios (columns)')
 disp('pure rate of time preference = 0.03; rate of risk aversion = 1')
