@@ -7,6 +7,8 @@ FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
 To run the model, type FUNDglobal
 
+May 14, 2018: Added Weitzman's other impact function
+
 March 29, 2018: Fixed land use emissions; added SSP scenarios
 
 March 20, 2018: Fixed CO2 concentration
