@@ -7,6 +7,8 @@ FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
 To run the model, type FUNDglobal
 
+June 23, 2018: The year for which the social cost of carbon is computed is now a constant (in initialize.m) rather than 2015.
+
 May 14, 2018: Added Weitzman's other impact function
 
 March 29, 2018: Fixed land use emissions; added SSP scenarios
