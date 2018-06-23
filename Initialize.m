@@ -12,6 +12,7 @@ clear all
 
 StartYear = 1750;
 EndHistYear = 2010;
+SCCYear = 2009 - StartYear;
 NHistYear = EndHistYear - StartYear + 1;
 EndYear = 2100;
 NYear = EndYear - StartYear + 1;

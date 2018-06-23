@@ -15,9 +15,54 @@ InitModules
 Calibration
 
 for t=2:NHistYear
+     if t == SCCYear
+        [MRHbox(t,1,:), CO2conc(t,1), pH(t,1)] = stepCO2(MRHbox(t-1,1,:),historicCO2emit(t-1)+1,historicLUemit(t-1));
+     else
+        [MRHbox(t,1,:), CO2conc(t,1), pH(t,1)] = stepCO2(MRHbox(t-1,1,:),historicCO2emit(t-1),historicLUemit(t-1));
+     end
+     [CH4conc(t,1), N2Oconc(t,1), SF6conc(t,1), CFC11conc(t,1), CFC12conc(t,1)] = stepGHG(CH4conc(t-1,1),historicCH4emit(t-1),N2Oconc(t-1,1),historicN2Oemit(t-1),SF6conc(t-1,1),historicSF6emit(t-1),CFC11conc(t-1,1),histCFC11emit(t-1),CFC12conc(t-1,1),histCFC12emit(t-1));
+     [RadForc(t,1),atmtemp(t,1), oceantemp(t,1),SLR(t,1)] = stepClimate(CO2conc(t,1),CH4conc(t,1),N2Oconc(t,1),SF6conc(t,1),CFC11conc(t,1),CFC12conc(t,1),Semit(t,1),trO3radforc(t,1),atmtemp(t-1,1),oceantemp(t-1,1));
+     [K(t,1),Y(t,1),Energy(t,1),CO2emit(t,1)] = stepEconomy(K(t-1,1),Y(t-1,1),TFP(t,1),histPopulation(t),EnInt(t,1),CO2Int(t,1));
+     impactd(:,t,1) = aggimpact(atmtemp(t,1),imppar,Y(t,1),Population(t,1));
+end
+
+for s=2:NScen
+    MRHbox(:,s,:) = MRHbox(:,1,:);
+    CO2conc(:,s) = CO2conc(:,1);
+    CH4conc(:,s) = CH4conc(:,1);
+    N2Oconc(:,s) = N2Oconc(:,1);
+    SF6conc(:,s) = SF6conc(:,1);
+    CFC11conc(:,s) = CFC11conc(:,1);
+    CFC12conc(:,s) = CFC12conc(:,1);
+    pH(:,s) = pH(:,1);
+    RadForc(:,s) = RadForc(:,1);
+    atmtemp(:,s) = atmtemp(:,1);
+    oceantemp(:,s) = oceantemp(:,1);
+    SLR(:,s) = SLR(:,1);
+    K(:,s) = K(:,1);
+    Y(:,s) = Y(:,1);
+    Energy(:,s) = Energy(:,1);
+    CO2emit(:,s) = CO2emit(:,1);
+    impactd(:,:,s) = impactd(:,:,1);
+end
+
+for t=NHistYear+1:NYear
+    for s=1:NScen
+        if t == SCCYear
+            [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s)+1,LUemit(t-1,s));
+        else
+            [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s),LUemit(t-1,s));
+        end
+        [CH4conc(t,s), N2Oconc(t,s), SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s)] = stepGHG(CH4conc(t-1,s),CH4emit(t-1,s),N2Oconc(t-1,s),N2Oemit(t-1,s),SF6conc(t-1,s),SF6emit(t-1,s),CFC11conc(t-1,s),CFC11emit(t-1,s),CFC12conc(t-1,s),CFC12emit(t-1,s));
+        [RadForc(t,s),atmtemp(t,s),oceantemp(t,s),SLR(t,s)] = stepClimate(CO2conc(t,s),CH4conc(t,s),N2Oconc(t,s),SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s),Semit(t,s),trO3radforc(t,s),atmtemp(t-1,s),oceantemp(t-1,s));
+        [K(t,s),Y(t,s),Energy(t,s),CO2emit(t,s)]= stepEconomy(K(t-1,s),Y(t-1,s),TFP(t,s),Population(t,s),EnInt(t,s),CO2Int(t,s));
+        impactd(:,t,s) = aggimpact(atmtemp(t,s),imppar,Y(t,s),Population(t,s));
+    end
+end
+
+for t=2:NHistYear
      [MRHbox(t,1,:), CO2conc(t,1), pH(t,1)] = stepCO2(MRHbox(t-1,1,:),historicCO2emit(t-1),historicLUemit(t-1));
      [CH4conc(t,1), N2Oconc(t,1), SF6conc(t,1), CFC11conc(t,1), CFC12conc(t,1)] = stepGHG(CH4conc(t-1,1),historicCH4emit(t-1),N2Oconc(t-1,1),historicN2Oemit(t-1),SF6conc(t-1,1),historicSF6emit(t-1),CFC11conc(t-1,1),histCFC11emit(t-1),CFC12conc(t-1,1),histCFC12emit(t-1));
-     CFC12conc(t,1) = (1-CFC12life)*CFC12conc(t-1,1) + histCFC12emit(t-1);
      [RadForc(t,1),atmtemp(t,1), oceantemp(t,1),SLR(t,1)] = stepClimate(CO2conc(t,1),CH4conc(t,1),N2Oconc(t,1),SF6conc(t,1),CFC11conc(t,1),CFC12conc(t,1),Semit(t,1),trO3radforc(t,1),atmtemp(t-1,1),oceantemp(t-1,1));
      [K(t,1),Y(t,1),Energy(t,1),CO2emit(t,1)] = stepEconomy(K(t-1,1),Y(t-1,1),TFP(t,1),histPopulation(t),EnInt(t,1),CO2Int(t,1));
      impact(:,t,1) = aggimpact(atmtemp(t,1),imppar,Y(t,1),Population(t,1));
@@ -43,22 +88,6 @@ for s=2:NScen
     impact(:,:,s) = impact(:,:,1);
 end
 
-impactd = impact;
-
-for t=NHistYear+1:NYear
-    for s=1:NScen
-        if t == 265
-            [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s)+1,LUemit(t-1,s));
-        else
-            [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s),LUemit(t-1,s));
-        end
-        [CH4conc(t,s), N2Oconc(t,s), SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s)] = stepGHG(CH4conc(t-1,s),CH4emit(t-1,s),N2Oconc(t-1,s),N2Oemit(t-1,s),SF6conc(t-1,s),SF6emit(t-1,s),CFC11conc(t-1,s),CFC11emit(t-1,s),CFC12conc(t-1,s),CFC12emit(t-1,s));
-        [RadForc(t,s),atmtemp(t,s),oceantemp(t,s),SLR(t,s)] = stepClimate(CO2conc(t,s),CH4conc(t,s),N2Oconc(t,s),SF6conc(t,s),CFC11conc(t,s),CFC12conc(t,s),Semit(t,s),trO3radforc(t,s),atmtemp(t-1,s),oceantemp(t-1,s));
-        [K(t,s),Y(t,s),Energy(t,s),CO2emit(t,s)]= stepEconomy(K(t-1,s),Y(t-1,s),TFP(t,s),Population(t,s),EnInt(t,s),CO2Int(t,s));
-        impactd(:,t,s) = aggimpact(atmtemp(t,s),imppar,Y(t,s),Population(t,s));
-    end
-end
-
 for t=NHistYear+1:NYear
     for s=1:NScen
         [MRHbox(t,s,:), CO2conc(t,s), pH(t,s)]= stepCO2(MRHbox(t-1,s,:),CO2emit(t-1,s),LUemit(t-1,s));
@@ -81,9 +110,9 @@ subplot(2,7,5), plot(Year,CO2emit(:,1)/1000,Year,CO2emit(:,2)/1000,Year,CO2emit(
 subplot(2,7,6), plot(Year,CO2conc(:,1),Year,CO2conc(:,2),Year,CO2conc(:,3),Year,CO2conc(:,4),Year,CO2conc(:,5),Year,CO2conc(:,6),Year,CO2conc(:,7),Year,CO2conc(:,8),Year,CO2conc(:,9)), xlabel('year'), ylabel('parts per million by volume'), title('Carbon dioxide concentration')
 subplot(2,7,7), plot(Year,atmtemp(:,1),Year,atmtemp(:,2),Year,atmtemp(:,3),Year,atmtemp(:,4),Year,atmtemp(:,6),Year,atmtemp(:,6),Year,atmtemp(:,7),Year,atmtemp(:,8),Year,atmtemp(:,9)), xlabel('year'), ylabel('degree Celsius'), title('Temperature')
 subplot(2,7,8), plot(Year,impact(1,:,1),Year,impact(1,:,2),Year,impact(1,:,3),Year,impact(1,:,4),Year,impact(1,:,5),Year,impact(1,:,6),Year,impact(1,:,7),Year,impact(1,:,8),Year,impact(1,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (parabola)')
-subplot(2,7,9), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3),Year,impact(2,:,4),Year,impact(2,:,5),Year,impact(2,:,6),Year,impact(2,:,7),Year,impact(2,:,8),Year,impact(2,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman')
-subplot(2,7,10), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3),Year,impact(3,:,4),Year,impact(3,:,5),Year,impact(3,:,6),Year,impact(3,:,7),Year,impact(3,:,8),Year,impact(3,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
-subplot(2,7,11), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3),Year,impact(4,:,4),Year,impact(4,:,5),Year,impact(4,:,6),Year,impact(4,:,7),Year,impact(4,:,8),Year,impact(4,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
-subplot(2,7,12), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3),Year,impact(5,:,4),Year,impact(5,:,5),Year,impact(5,:,6),Year,impact(5,:,7),Year,impact(5,:,8),Year,impact(5,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
-subplot(2,7,13), plot(Year,impact(6,:,1),Year,impact(6,:,2),Year,impact(6,:,3),Year,impact(6,:,4),Year,impact(6,:,5),Year,impact(6,:,6),Year,impact(6,:,7),Year,impact(6,:,8),Year,impact(6,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Golosov')
-subplot(2,7,14), plot(Year,impact(7,:,1),Year,impact(7,:,2),Year,impact(7,:,3),Year,impact(7,:,4),Year,impact(7,:,5),Year,impact(7,:,6),Year,impact(7,:,7),Year,impact(7,:,8),Year,impact(7,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (bilinear)')
+subplot(2,7,9), plot(Year,impact(2,:,1),Year,impact(2,:,2),Year,impact(2,:,3),Year,impact(2,:,4),Year,impact(2,:,5),Year,impact(2,:,6),Year,impact(2,:,7),Year,impact(2,:,8),Year,impact(2,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman (6)')
+subplot(2,7,10), plot(Year,impact(3,:,1),Year,impact(3,:,2),Year,impact(3,:,3),Year,impact(3,:,4),Year,impact(3,:,5),Year,impact(3,:,6),Year,impact(3,:,7),Year,impact(3,:,8),Year,impact(3,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Weitzman (7)')
+subplot(2,7,11), plot(Year,impact(4,:,1),Year,impact(4,:,2),Year,impact(4,:,3),Year,impact(4,:,4),Year,impact(4,:,5),Year,impact(4,:,6),Year,impact(4,:,7),Year,impact(4,:,8),Year,impact(4,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Nordhaus')
+subplot(2,7,12), plot(Year,impact(5,:,1),Year,impact(5,:,2),Year,impact(5,:,3),Year,impact(5,:,4),Year,impact(5,:,5),Year,impact(5,:,6),Year,impact(5,:,7),Year,impact(5,:,8),Year,impact(5,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Hope')
+subplot(2,7,13), plot(Year,impact(6,:,1),Year,impact(6,:,2),Year,impact(6,:,3),Year,impact(6,:,4),Year,impact(6,:,5),Year,impact(6,:,6),Year,impact(6,:,7),Year,impact(6,:,8),Year,impact(6,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to van der Ploeg')
+subplot(2,7,14), plot(Year,impact(8,:,1),Year,impact(8,:,2),Year,impact(8,:,3),Year,impact(8,:,4),Year,impact(8,:,5),Year,impact(8,:,6),Year,impact(8,:,7),Year,impact(8,:,8),Year,impact(8,:,9)), xlabel('year'), ylabel('percent income'), title('Impact according to Tol (bilinear)')
