@@ -7,6 +7,8 @@ FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
 To run the model, type FUNDglobal
 
+June 30, 2018: Added constant consumption discount rates (hidden from standard output display, because you should not do this)
+
 June 23, 2018: The year for which the social cost of carbon is computed is now a constant (in initialize.m) rather than 2015.
 
 May 14, 2018: Added Weitzman's other impact function
