@@ -86,9 +86,12 @@ STpar(3) = 0.00738;
 STpar(4) = 0.00568;
 
 %impact
-global NImpact impincelas
+global NImpact NTImp NObsImp NGImp impincelas
 
+NObsImp = length(observedImpact);
 NImpact = 8;
+NTImp = NImpact + NObsImp + 4 + 1
+NGImp = 14;
 %impincelas =  0.00;
 %impincelas = -0.18;
 impincelas = -0.36;
