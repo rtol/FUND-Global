@@ -5,7 +5,7 @@ Matlab code for FUND 4.1 MG
 
 FUND is the Climate Framework for Uncertainty, Negotiation and Distribution
 
-To run the model, type FUNDglobal
+To run the model, type FUNDglobal or FUND42MG
 
 June 30, 2018: Added constant consumption discount rates (hidden from standard output display, because you should not do this)
 
